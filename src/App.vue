@@ -1,11 +1,20 @@
 <template>
-  <div></div>
+  <div id="app">
+    <router-view/>
+    <FootGuide/>
+  </div>
 </template>
 
 <script>
-  export default {}
+  import FootGuide from './components/FootGuide/FootGuide.vue'
+
+  export default {
+    components: {
+      FootGuide
+    }
+  }
 </script>
 
-<style scoped>
+<style lang="stylus" rel="stylesheet/stylus">
 
 </style>
