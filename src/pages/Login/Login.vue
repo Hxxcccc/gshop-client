@@ -34,10 +34,10 @@
                 <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
               </section>
               <section class="login_verification">
-                <input type="tel" maxlength="8" placeholder="密码">
-                <div class="switch_button off">
-                  <div class="switch_circle"></div>
-                  <span class="switch_text">...</span>
+                <input :type="isShowPwd ? 'text' : 'password' " maxlength="8" placeholder="密码">
+                <div class="switch_button off" @click="isShowPwd=!isShowPwd" :class="isShowPwd ? 'on' : 'off'" >
+                  <div class="switch_circle" :class="{right: isShowPwd}"></div>
+                  <span class="switch_text">{{isShowPwd ? 'abc' : ''}}</span>
                 </div>
               </section>
               <section class="login_message">
@@ -61,9 +61,10 @@
   export default {
     data () {
       return {
-        loginWay: true,  //true: 短信登录 false: 密码登录
+        loginWay: false,  //true: 短信登录 false: 密码登录
         phone: '',  //手机号
-        computeTime: 0 //计时剩余的时间
+        computeTime: 0, //计时剩余的时间
+        isShowPwd: false,  //是否显示密码
       }
     },
 
@@ -183,7 +184,6 @@
                 &.on
                   background #02a774
                 >.switch_circle
-                //transform translateX(27px)
                   position absolute
                   top -1px
                   left -1px
@@ -194,6 +194,8 @@
                   background #fff
                   box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
                   transition transform .3s
+                  &.right
+                    transform translateX(27px)
             .login_hint
               margin-top 12px
               color #999
