@@ -42,7 +42,7 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码">
-                <img class="get_verification" src="./images/captcha.svg" alt="captcha">
+                <img ref="captcha" class="get_verification" src="http://localhost:5000/captcha" alt="captcha" @click="updateCaptcha">
               </section>
             </section>
           </div>
@@ -75,6 +75,7 @@
     },
 
     methods: {
+      //发送验证码
       sendCode() {
         //开始倒计时
         this.computeTime = 30
@@ -86,9 +87,14 @@
             clearInterval(intervalId)
           }
         },1000)
+      },
+
+      //更新图片验证码
+      updateCaptcha () {
+        //给img指定不同的src值(只是参数改变) 浏览器会自动请求获取图片数据
+        this.$refs.captcha.src = 'http://localhost:5000/captcha?time='+Date.now()
       }
     }
-
   }
 </script>
 
