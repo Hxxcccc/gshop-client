@@ -29,3 +29,7 @@ export const reqUserInfo = () => ajax(BASE + '/userinfo')
 
 //退出登录
 export const reqLogOut = () => ajax(BASE + '/logout')
+
+export const reqShopInfo = () => ajax('/info')
+export const reqShopGoods = () => ajax('/goods')
+export const reqShopRatings = () => ajax('/ratings')
