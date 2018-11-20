@@ -17,3 +17,12 @@ export const reqShops = ({latitude, longitude}) => ajax(BASE+'/shops', {latitude
 
 // 发送短信验证码
 export const reqSendCode = (phone) => ajax(BASE + '/sendcode', {phone})
+
+//手机号验证码登录
+export const reqSmsLogin = (phone, code) => ajax(BASE + '/login_sms', {phone, code}, 'POST')
+
+//用户名密码登录
+export const reqPwdLogin = ({name, pwd ,captcha}) => ajax(BASE + '/login_pwd', {name, pwd ,captcha}, 'POST')
+
+//获取当前用户信息
+export const reqUserInfo = () => ajax(BASE + '/userinfo')
