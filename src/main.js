@@ -1,5 +1,6 @@
 /*入口js*/
 import Vue from 'vue'
+import {Button} from 'mint-ui'
 import App from './App'
 
 import store from './store'
@@ -8,6 +9,7 @@ import TopHeader from './components/TopHeader/TopHeader'
 
 //注册全局组件
 Vue.component('TopHeader', TopHeader)
+Vue.component(Button.name, Button)
 
 /* eslint-disable no-new*/
 new Vue ({
