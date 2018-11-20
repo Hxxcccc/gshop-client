@@ -58,6 +58,9 @@
 </template>
 
 <script>
+  import {reqSendCode} from '../../api'
+  import {Toast, MessageBox} from 'mint-ui'
+
   export default {
     data () {
       return {
@@ -69,6 +72,7 @@
     },
 
     computed: {
+
       isRightPhone() {
         return /^1\d{10}$/.test(this.phone)
       }
@@ -76,7 +80,7 @@
 
     methods: {
       //发送验证码
-      sendCode() {
+      async sendCode() {
         //开始倒计时
         this.computeTime = 30
         const intervalId = setInterval(() => {
@@ -87,6 +91,16 @@
             clearInterval(intervalId)
           }
         },1000)
+
+        //发ajax请求 发送短信验证码
+        const result = await reqSendCode(this.phone)
+        if(result.code===0) {
+          Toast('短信已发送')
+        }else {
+          //停止计时
+          this.computeTime = 0
+          MessageBox.alert(result.msg, '提示')
+        }
       },
 
       //更新图片验证码

@@ -14,3 +14,6 @@ export const reqFoodCategorys = () => ajax(BASE+'/index_category')
 
 //3.根据经纬度获取商铺列表
 export const reqShops = ({latitude, longitude}) => ajax(BASE+'/shops', {latitude, longitude})
+
+// 发送短信验证码
+export const reqSendCode = (phone) => ajax(BASE + '/sendcode', {phone})
