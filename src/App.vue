@@ -1,11 +1,28 @@
 <template>
-  <div></div>
+  <div id="app">
+    <router-view/>
+    <FootGuide v-show="$route.meta.showFoot"/>
+  </div>
 </template>
 
 <script>
-  export default {}
+  import FootGuide from './components/FootGuide/FootGuide.vue'
+
+  import {reqAddress} from './api'
+
+  export default {
+
+   mounted () {
+     this.$store.dispatch('getAddress')
+     this.$store.dispatch('getUserInfo')
+    },
+
+    components: {
+      FootGuide
+    }
+  }
 </script>
 
-<style scoped>
+<style lang="stylus" rel="stylesheet/stylus" scoped>
 
 </style>
