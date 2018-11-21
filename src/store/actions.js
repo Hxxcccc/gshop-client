@@ -86,7 +86,7 @@ export default {
     const result = await reqShopInfo()
     if(result.code===0) {
       const info = result.data
-      info.score = 3.5
+      // info.score = 3.5
       commit(RECEIVE_INFO, {info})
     }
   },
@@ -94,7 +94,7 @@ export default {
 // 异步获取商家评价列表
   async getShopRatings({commit}) {
     const result = await reqShopRatings()
-    if(result.code===0) {
+    if(result.code===0) {q
       const ratings = result.data
       commit(RECEIVE_RATINGS, {ratings})
     }
