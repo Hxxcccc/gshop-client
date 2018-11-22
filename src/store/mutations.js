@@ -46,15 +46,21 @@ export default {
     if(food.count) {
       food.count++
     }else {   //第一次
-      //添加count属性 并指定值为1
+      //新添加count属性 并指定值为1
       //food.count = 1  //妹有数据绑定 ==> 不会更新界面
       Vue.set(food, 'count', 1)
+      //添加到购物车中
+      state.cartFoods.push(food)
     }
   },
 
   [REDUCE_FOOD_COUNT](state, {food}) {
    if(food.count) {
     food.count--
+     //一旦减为0时 从购物车中删除food
+     if(food.count===0) {
+       this.cartFoods.splice(this.cartFoods.indexOf(food), 1)
+     }
    }
   },
 }
