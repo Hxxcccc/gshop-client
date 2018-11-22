@@ -33,7 +33,7 @@
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    CartControl组件
+                    <CartControl :food="food"/>
                   </div>
                 </div>
               </li>
@@ -46,24 +46,10 @@
 </template>
 
 <script>
-  /*
-1. 滑动右侧列表, 左侧的当前分类可能需要变化
-  计算当前分类的下标: currentIndex
-     右侧列表Y轴方向滑动的位置: scrollY, 在右侧滑动过程中不断变化
-     右侧所有分类li标签的top值: tops, 一旦列表数据显示之后就不会再变化
-  在列表显示之后, 统计并更新tops
-  监视右侧列表的滑动, 并在回调函数中更新scrollY
-2. 点击左侧分类项, 右侧列表滑动到对应位置
-  给左侧列表项绑定点击监听
-  根据下标得到目标位置的坐标, 滑动到对应的位置
-3. 让当前分类始终可见
-  一旦当前分类发生改变, 让当前分类项滑动到最上面(不一定能到指定位置, 但至少保证在可视范围内)
-
-   */
-
 
   import BScroll from 'better-scroll'
   import {mapState} from 'vuex'
+  import CartControl from '../../../components/CartControl/CartControl'
   export default {
     data () {
       return {
@@ -98,8 +84,6 @@
           const li = this.$refs.leftUl.children[index]
           this.leftScroll.scrollToElement(li, 300)
         }
-
-
         return index
       }
     },
@@ -156,6 +140,10 @@
         // 让右侧列表平滑滚动到目标位置
         this.rightScroll.scrollTo(0, y, 500)
       }
+    },
+
+    components: {
+      CartControl
     }
   }
 </script>

@@ -1,19 +1,19 @@
 /*
   包含n个直接更新状态数据的对象
  */
-
+import Vue from 'vue'
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_USER,
-  RESET_USER
-} from './mutation-types'
-import {
+  RESET_USER,
   RECEIVE_GOODS,
   RECEIVE_INFO,
-  RECEIVE_RATINGS
-} from "../../../../../课堂代码/1800710_gshop-client/src/store/mutation-types";
+  RECEIVE_RATINGS,
+  ADD_FOOD_COUNT,
+  REDUCE_FOOD_COUNT
+} from "./mutation-types";
 export default {
   [RECEIVE_ADDRESS](state, {address}) {
     state.address = address
@@ -41,5 +41,20 @@ export default {
 
   [RECEIVE_GOODS](state, {goods}) {
     state.goods = goods
+  },
+  [ADD_FOOD_COUNT](state, {food}) {
+    if(food.count) {
+      food.count++
+    }else {   //第一次
+      //添加count属性 并指定值为1
+      //food.count = 1  //妹有数据绑定 ==> 不会更新界面
+      Vue.set(food, 'count', 1)
+    }
+  },
+
+  [REDUCE_FOOD_COUNT](state, {food}) {
+   if(food.count) {
+    food.count--
+   }
   },
 }
